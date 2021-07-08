@@ -29,12 +29,4 @@ class InnerDto
     {
         return $this->innerList;
     }
-
-    /**
-     * @param ArrayCollection $innerList
-     */
-    public function setInnerList(ArrayCollection $innerList): void
-    {
-        $this->innerList = $innerList;
-    }
 }

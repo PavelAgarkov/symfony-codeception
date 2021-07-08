@@ -2,8 +2,9 @@
 
 namespace App\Infrastructure\Serializer\Dto;
 
+use DateTimeInterface;
 use JMS\Serializer\Annotation as Serializer;
-use App\Infrastructure\Serializer\Dto\InnerDto;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class ListDto
 {
@@ -15,11 +16,22 @@ class ListDto
     private InnerDto $list;
 
     /**
-     * ListDto constructor.
+     * @var
+     * @var DateTimeInterface|null
+     * @Serializer\SerializedName("date")
+     * @Serializer\Type("DateTime<'Y-m-d'>")
+     * @Assert\NotNull()
      */
-    public function __construct()
+    private DateTimeInterface $date;
+
+    /**
+     * ListDto constructor.
+     * @param DateTimeInterface $date
+     */
+    public function __construct(DateTimeInterface $date)
     {
         $this->list = new InnerDto();
+        $this->date = $date;
     }
 
     /**
@@ -31,10 +43,10 @@ class ListDto
     }
 
     /**
-     * @param InnerDto $list
+     * @return DateTimeInterface
      */
-    public function setList(InnerDto $list): void
+    public function getDate(): DateTimeInterface
     {
-        $this->list = $list;
+        return $this->date;
     }
 }
