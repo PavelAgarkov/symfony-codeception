@@ -9,29 +9,34 @@ use App\Tests\FunctionalTester;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
 
-class JmsSerializerDenormalizeCest
+class JmsSerializerDenormalizeNormalizeCest
 {
     public function testArrayListNodeDenormalizeNormalizeJmsSerializer(FunctionalTester $I): void
     {
-        $data = [
-            'list' => [
+        $inner = [
+            'inner_list' =>
                 [
-                    'id' => 1,
-                    'open_name' => 'Pavel',
-                    'functional_string' => 'GoToPhP',
-                    'same_option' => 'sameOnly',
-                    'y_m_d' => '2020-12-24',
-                ],
+                    [
+                        'id' => 1,
+                        'open_name' => 'Pavel',
+                        'functional_string' => 'GoToPhP',
+                        'same_option' => 'sameOnly',
+                        'y_m_d' => '2020-12-24',
+                    ],
 
-                [
-                    'id' => 2,
-                    'open_name' => 'Pavel',
-                    'functional_string' => 'GoToPhP',
-                    'same_option' => 'sameOnly',
-                    'y_m_d' => '2020-12-24',
+                    [
+                        'id' => 2,
+                        'open_name' => 'Pavel',
+                        'functional_string' => 'GoToPhP',
+                        'same_option' => 'sameOnly',
+                        'y_m_d' => '2020-12-24',
+                    ]
                 ]
-            ]
         ];
+
+        $data = ['list' => $inner];
+
+
 
         /** @var Serializer $jms */
         $jms = $I->grabService(SerializerInterface::class);

@@ -2,38 +2,38 @@
 
 namespace App\Infrastructure\Serializer\Dto;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as Serializer;
+use App\Infrastructure\Serializer\Dto\InnerDto;
 
 class ListDto
 {
     /**
-     * @var ArrayCollection
+     * @var InnerDto
      * @Serializer\SerializedName("list")
-     * @Serializer\Type("ArrayCollection<App\Infrastructure\Serializer\Dto\NodeDto>")
+     * @Serializer\Type("App\Infrastructure\Serializer\Dto\InnerDto")
      */
-    private ArrayCollection $list;
+    private InnerDto $list;
 
     /**
      * ListDto constructor.
      */
     public function __construct()
     {
-        $this->list = new ArrayCollection();
+        $this->list = new InnerDto();
     }
 
     /**
-     * @return ArrayCollection
+     * @return InnerDto
      */
-    public function getList(): ArrayCollection
+    public function getList(): InnerDto
     {
         return $this->list;
     }
 
     /**
-     * @param ArrayCollection $list
+     * @param InnerDto $list
      */
-    public function setList(ArrayCollection $list): void
+    public function setList(InnerDto $list): void
     {
         $this->list = $list;
     }
