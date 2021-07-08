@@ -2,7 +2,9 @@
 
 namespace App\Infrastructure\Serializer\Dto;
 
+use DateTimeInterface;
 use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class NodeDto
 {
@@ -35,18 +37,29 @@ class NodeDto
     private string $sameOption;
 
     /**
+     * @var
+     * @var DateTimeInterface|null
+     * @Serializer\SerializedName("y_m_d")
+     * @Serializer\Type("DateTime<'Y-m-d'>")
+     * @Assert\NotNull()
+     */
+    private DateTimeInterface $yMD;
+
+    /**
      * NodeDto constructor.
      * @param int $id
      * @param string $openName
      * @param string $functionalString
      * @param string $sameOption
+     * @param DateTimeInterface $yMD
      */
-    public function __construct(int $id, string $openName, string $functionalString, string $sameOption)
+    public function __construct(int $id, string $openName, string $functionalString, string $sameOption, DateTimeInterface $yMD)
     {
         $this->id = $id;
         $this->openName = $openName;
         $this->functionalString = $functionalString;
         $this->sameOption = $sameOption;
+        $this->yMD = $yMD;
     }
 
     /**
@@ -79,5 +92,13 @@ class NodeDto
     public function getSameOption(): string
     {
         return $this->sameOption;
+    }
+
+    /**
+     * @return DateTimeInterface
+     */
+    public function getYMD(): DateTimeInterface
+    {
+        return $this->yMD;
     }
 }
