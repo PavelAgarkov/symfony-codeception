@@ -36,8 +36,6 @@ class JmsSerializerDenormalizeNormalizeCest
 
         $data = ['list' => $inner, 'date' => '2020-06-24'];
 
-
-
         /** @var Serializer $jms */
         $jms = $I->grabService(SerializerInterface::class);
 

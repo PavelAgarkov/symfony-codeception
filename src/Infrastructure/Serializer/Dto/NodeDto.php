@@ -12,6 +12,8 @@ class NodeDto
      * @var int
      * @Serializer\SerializedName("id")
      * @Serializer\Type("int")
+     * @Serializer\Since("1")
+     * @Serializer\Groups({"Default"})
      */
     private int $id;
 
@@ -19,6 +21,8 @@ class NodeDto
      * @var string
      * @Serializer\SerializedName("open_name")
      * @Serializer\Type("string")
+     * @Serializer\Since("1")
+     * @Serializer\Groups({"Default"})
      */
     private string $openName;
 
@@ -26,6 +30,8 @@ class NodeDto
      * @var string
      * @Serializer\SerializedName("functional_string")
      * @Serializer\Type("string")
+     * @Serializer\Since("1")
+     * @Serializer\Groups({"Default", "Some"})
      */
     private string $functionalString;
 
@@ -33,6 +39,8 @@ class NodeDto
      * @var string
      * @Serializer\SerializedName("same_option")
      * @Serializer\Type("string")
+     * @Serializer\Since("4")
+     * @Serializer\Groups({"Default"})
      */
     private string $sameOption;
 
@@ -41,6 +49,8 @@ class NodeDto
      * @var DateTimeInterface|null
      * @Serializer\SerializedName("y_m_d")
      * @Serializer\Type("DateTime<'Y-m-d'>")
+     * @Serializer\Since("3")
+     * @Serializer\Groups({"Default", "Some"})
      * @Assert\NotNull()
      */
     private DateTimeInterface $yMD;

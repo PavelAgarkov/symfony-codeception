@@ -12,6 +12,7 @@ class ListDto
      * @var InnerDto
      * @Serializer\SerializedName("list")
      * @Serializer\Type("App\Infrastructure\Serializer\Dto\InnerDto")
+     * @Serializer\Groups({"Default", "Some"})
      */
     private InnerDto $list;
 

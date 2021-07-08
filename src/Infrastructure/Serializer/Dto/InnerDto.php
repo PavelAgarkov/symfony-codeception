@@ -11,6 +11,7 @@ class InnerDto
      * @var ArrayCollection
      * @Serializer\SerializedName("inner_list")
      * @Serializer\Type("ArrayCollection<App\Infrastructure\Serializer\Dto\NodeDto>")
+     * @Serializer\Groups({"Default", "Some"})
      */
     private ArrayCollection $innerList;
 
