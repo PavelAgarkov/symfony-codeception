@@ -4,6 +4,7 @@ namespace App\Infrastructure\Serializer\Dto;
 
 use DateTimeInterface;
 use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class NodeDto
@@ -14,6 +15,7 @@ class NodeDto
      * @Serializer\Type("int")
      * @Serializer\Since("1")
      * @Serializer\Groups({"Default"})
+     * @Groups({"group1"})
      */
     private int $id;
 
@@ -23,6 +25,7 @@ class NodeDto
      * @Serializer\Type("string")
      * @Serializer\Since("1")
      * @Serializer\Groups({"Default"})
+     * @Groups({"group1"})
      */
     private string $openName;
 
@@ -54,23 +57,6 @@ class NodeDto
      * @Assert\NotNull()
      */
     private DateTimeInterface $yMD;
-
-    /**
-     * NodeDto constructor.
-     * @param int $id
-     * @param string $openName
-     * @param string $functionalString
-     * @param string $sameOption
-     * @param DateTimeInterface $yMD
-     */
-    public function __construct(int $id, string $openName, string $functionalString, string $sameOption, DateTimeInterface $yMD)
-    {
-        $this->id = $id;
-        $this->openName = $openName;
-        $this->functionalString = $functionalString;
-        $this->sameOption = $sameOption;
-        $this->yMD = $yMD;
-    }
 
     /**
      * @return int
@@ -110,5 +96,60 @@ class NodeDto
     public function getYMD(): DateTimeInterface
     {
         return $this->yMD;
+    }
+
+    /**
+     * @param int $id
+     * @return NodeDto
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @param string $openName
+     * @return NodeDto
+     */
+    public function setOpenName(string $openName): self
+    {
+        $this->openName = $openName;
+
+        return $this;
+    }
+
+    /**
+     * @param string $functionalString
+     * @return NodeDto
+     */
+    public function setFunctionalString(string $functionalString): self
+    {
+        $this->functionalString = $functionalString;
+
+        return $this;
+    }
+
+    /**
+     * @param string $sameOption
+     * @return NodeDto
+     */
+    public function setSameOption(string $sameOption): self
+    {
+        $this->sameOption = $sameOption;
+
+        return $this;
+    }
+
+    /**
+     * @param DateTimeInterface $yMD
+     * @return NodeDto
+     */
+    public function setYMD(DateTimeInterface $yMD): self
+    {
+        $this->yMD = $yMD;
+
+        return $this;
     }
 }

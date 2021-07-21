@@ -1,3 +1,14 @@
+services:
+  # добавлять или переопределять нормализаторов и энкодеров можно с помощью тегов serializer.normalizer and serializer.encoder.
+  date_time__normalizer:
+    class: Symfony\Component\Serializer\Normalizer\DateTimeNormalizer
+    arguments:
+      $defaultContext:
+        datetime_format: Y-m-d
+        datetime_timezone: null
+    tags: [ serializer.normalizer ]
+
 framework:
   serializer:
     name_converter: 'serializer.name_converter.camel_case_to_snake_case'
+    enable_annotations: true

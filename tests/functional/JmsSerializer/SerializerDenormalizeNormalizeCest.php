@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\functional;
+namespace App\Tests\functional\JmsSerializer;
 
 use App\Infrastructure\Serializer\Dto\DateDto;
 use App\Infrastructure\Serializer\Dto\ListDto;
@@ -9,7 +9,7 @@ use App\Tests\FunctionalTester;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
 
-class JmsSerializerDenormalizeNormalizeCest
+class SerializerDenormalizeNormalizeCest
 {
     public function testArrayListNodeDenormalizeNormalizeJmsSerializer(FunctionalTester $I): void
     {
