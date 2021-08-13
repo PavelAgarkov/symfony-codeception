@@ -5,9 +5,12 @@ namespace App\Tests\functional\JmsSerializer;
 use App\Infrastructure\Serializer\Dto\DateDto;
 use App\Infrastructure\Serializer\Dto\ListDto;
 use App\Infrastructure\Serializer\Dto\NodeDto;
+use App\Infrastructure\Serializer\Dto\ResourceTypeDto;
+use App\Infrastructure\Serializer\Dto\ResourceValidationGetResourcesDto;
 use App\Tests\FunctionalTester;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
+use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 
 class SerializerDenormalizeNormalizeCest
 {
@@ -80,5 +83,59 @@ class SerializerDenormalizeNormalizeCest
         $normalize = $jms->toArray($denormalize);
 
         $I->assertEquals($data, $normalize);
+    }
+
+    public function testSimpleSerialization(FunctionalTester $tester): void
+    {
+        $data =
+            [
+                'sounds' =>
+                    [
+                        'beep',
+                        'be',
+                    ],
+            ];
+
+        /** @var Serializer $jms */
+        $jms = $tester->grabService(SerializerInterface::class);
+
+        $denormalize = $jms->fromArray($data, ResourceTypeDto::class);
+
+        $normalize = $jms->toArray($denormalize);
+
+        $tester->assertEquals($data, $normalize);
+    }
+
+    public function testNotSimpleSerialization(FunctionalTester $tester): void
+    {
+        $data = [
+            'params' =>
+                [
+                    'sounds' =>
+                        [
+                            '2r' =>'beep',
+                            '2r3' => 'click'
+                        ],
+
+                    'requirements' =>
+                        [
+                            'bbbbbbbbbbbb.wb'
+                        ],
+
+                    'packages' =>
+                        [
+                            'lib.deb'
+                        ]
+                ]
+        ];
+
+        /** @var Serializer $jms */
+        $jms = $tester->grabService(SerializerInterface::class);
+
+        $denormalize = $jms->fromArray($data, ResourceValidationGetResourcesDto::class);
+
+        $normalize = $jms->toArray($denormalize);
+
+        $tester->assertEquals($data, $normalize);
     }
 }

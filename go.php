@@ -1,5 +1,7 @@
 <?php
 
-echo 22222;
+$a = 1;
 
-var_dump(ps_new());
+echo $a++;
+
+echo $a;
