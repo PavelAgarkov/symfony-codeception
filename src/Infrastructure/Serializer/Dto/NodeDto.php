@@ -48,13 +48,11 @@ class NodeDto
     private string $sameOption;
 
     /**
-     * @var
      * @var DateTimeInterface|null
      * @Serializer\SerializedName("y_m_d")
      * @Serializer\Type("DateTime<'Y-m-d'>")
      * @Serializer\Since("3")
      * @Serializer\Groups({"Default", "Some"})
-     * @Assert\NotNull()
      */
     private DateTimeInterface $yMD;
 
@@ -91,9 +89,9 @@ class NodeDto
     }
 
     /**
-     * @return DateTimeInterface
+     * @return DateTimeInterface|null
      */
-    public function getYMD(): DateTimeInterface
+    public function getYMD(): ?DateTimeInterface
     {
         return $this->yMD;
     }
@@ -143,10 +141,10 @@ class NodeDto
     }
 
     /**
-     * @param DateTimeInterface $yMD
+     * @param DateTimeInterface|null $yMD
      * @return NodeDto
      */
-    public function setYMD(DateTimeInterface $yMD): self
+    public function setYMD(?DateTimeInterface $yMD): self
     {
         $this->yMD = $yMD;
 

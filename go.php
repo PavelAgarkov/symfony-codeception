@@ -1,7 +1,3 @@
 <?php
 
-$a = 1;
-
-echo $a++;
-
-echo $a;
+var_dump(new DateTimeImmutable(new DateInterval()));

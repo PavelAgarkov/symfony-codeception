@@ -8,6 +8,8 @@ use App\Infrastructure\Serializer\Dto\NodeDto;
 use App\Infrastructure\Serializer\Dto\ResourceTypeDto;
 use App\Infrastructure\Serializer\Dto\ResourceValidationGetResourcesDto;
 use App\Tests\FunctionalTester;
+use JMS\Serializer\DeserializationContext;
+use JMS\Serializer\SerializationContext;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
@@ -56,13 +58,15 @@ class SerializerDenormalizeNormalizeCest
             'open_name' => 'Pavel',
             'functional_string' => 'GoToPhP',
             'same_option' => 'sameOnly',
-            'y_m_d' => '2020-12-24',
+//            'y_m_d' => '2020-12-24',
         ];
 
         /** @var Serializer $jms */
         $jms = $I->grabService(SerializerInterface::class);
 
         $denormalize = $jms->fromArray($data, NodeDto::class);
+        var_dump($denormalize);
+
 
         $normalize = $jms->toArray($denormalize);
 
